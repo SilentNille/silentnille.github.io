@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>silentnille · Semester 1</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><rect x='2' y='1' width='12' height='14' fill='%23fff7a8' stroke='%231f3a93'/></svg>">
+  <link rel="preload" href="/fonts/ReenieBeanie.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="/style.css">
+  <script>
+    {
+      const theme = localStorage.theme || (matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+      document.documentElement.dataset.theme = theme;
+    }
+  </script>
+  <script src="/main.js" defer></script>
+</head>
+<body>
+  <header>
+    <a class="logo" href="/">silentnille</a>
+    <button class="lamp" type="button" aria-label="Licht an/aus">
+      <svg viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
+        <path class="cone" d="M22 13 L36 34 L12 34 Z" stroke="none"/>
+        <path d="M6 37h14M13 37V22l6-8"/>
+        <g class="head"><path d="M15 10l10 6-3 3-10-6z" fill="currentColor"/></g>
+      </svg>
+    </button>
+  </header>
+  <main>
+    <h1>Mein <mark>erstes Semester</mark> im Master</h1>
+    <nav class="notes">
+      <a class="note" href="/generative-gestaltung/"><b>Generative Gestaltung</b>HA 1: drei Ebenen Perlin Noise, übereinander geblendet.<span class="stamp">LÄUFT</span></a>
+      <a class="note" href="/wissen-als-ressource/"><b>Wissen als Ressource</b>Thema? Noch offen. Wahrscheinlich NotebookLM.<span class="stamp soon">BALD</span></a>
+    </nav>
+  </main>
+</body>
+</html>

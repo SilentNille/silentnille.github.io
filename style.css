@@ -1,0 +1,149 @@
+@font-face {
+  font-family: "Reenie Beanie";
+  src: url("/fonts/ReenieBeanie.woff2") format("woff2");
+  font-display: swap;
+}
+
+:root {
+  --hand: "Reenie Beanie", cursive;
+  --bg: #fdfdfb;
+  --grid: #bcd3ea;
+  --ink: #1f3a93;
+  --margin: #e8474c;
+  --mark: #fff27a;
+  --note: #fff7a8;
+  --note2: #c9f0ff;
+  --note-ink: #1f3a93;
+  --stamp: #b3202a;
+  color-scheme: light;
+}
+
+[data-theme="dark"] {
+  --bg: #13294b;
+  --grid: #ffffff1c;
+  --ink: #e6eefc;
+  --margin: #ff8a8a;
+  --mark: #f5d76e66;
+  --note: #f5d76e;
+  --note2: #9fd8ef;
+  color-scheme: dark;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  padding: 20px 20px 60px 72px;
+  color: var(--ink);
+  font: 24px/1.1 var(--hand);
+  background-color: var(--bg);
+  background-image:
+    linear-gradient(var(--grid) 1px, transparent 1px),
+    linear-gradient(90deg, var(--grid) 1px, transparent 1px);
+  background-size: 18px 18px;
+  transition: background-color .4s, color .4s;
+}
+
+/* red margin rule of the notebook */
+body::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 52px;
+  width: 2px;
+  background: var(--margin);
+  opacity: .6;
+}
+
+a { color: inherit; }
+main, header { max-width: 760px; }
+header { display: flex; justify-content: space-between; align-items: center; }
+h1 { font-size: 56px; font-weight: 400; line-height: .95; margin: 20px 0 8px; }
+h2 { font-size: 36px; font-weight: 400; margin: 28px 0 4px; }
+p { margin: 4px 0; max-width: 34em; }
+mark { color: inherit; background: linear-gradient(transparent 60%, var(--mark) 60%, var(--mark) 90%, transparent 90%); }
+:focus-visible { outline: 2px dashed var(--margin); outline-offset: 4px; }
+
+.logo { font-size: 28px; text-decoration: none; user-select: none; }
+.crumb { font-size: 22px; opacity: .75; }
+
+/* desk lamp = theme toggle */
+.lamp { width: 56px; height: 56px; padding: 4px; color: var(--ink); background: none; border: 0; cursor: pointer; }
+.lamp svg { width: 100%; height: 100%; overflow: visible; }
+.lamp .cone { fill: var(--mark); transition: opacity .3s; animation: glow 2.4s ease-in-out infinite; }
+.lamp .head { transform-origin: 14px 14px; transition: transform .4s; }
+[data-theme="dark"] .lamp .cone { opacity: 0; animation: none; }
+[data-theme="dark"] .lamp .head { transform: rotate(-18deg); }
+@keyframes glow { 50% { opacity: .55; } }
+
+/* sticky notes with tape and stamp */
+.notes { display: flex; flex-wrap: wrap; gap: 36px; margin-top: 36px; }
+.note {
+  position: relative;
+  display: block;
+  width: 240px;
+  padding: 22px 18px 26px;
+  color: var(--note-ink);
+  background: var(--note);
+  font-size: 24px;
+  line-height: 1.05;
+  text-decoration: none;
+  box-shadow: 3px 4px 0 #0000002a;
+  transform: rotate(-2deg);
+  transition: transform .2s;
+}
+.note:nth-child(2n) { background: var(--note2); transform: rotate(1.5deg); }
+a.note:hover { transform: rotate(0) scale(1.03); }
+.note::before {
+  content: "";
+  position: absolute;
+  top: -10px;
+  left: 80px;
+  width: 80px;
+  height: 22px;
+  background: #ffffffaa;
+  transform: rotate(3deg);
+}
+.note b { display: block; margin-bottom: 6px; font-size: 32px; font-weight: 400; }
+.stamp {
+  position: absolute;
+  right: -12px;
+  bottom: -16px;
+  display: grid;
+  place-items: center;
+  width: 64px;
+  height: 64px;
+  color: var(--stamp);
+  background: inherit;
+  border: 3px solid var(--stamp);
+  border-radius: 50%;
+  font: 700 12px/1 "Helvetica Neue", Arial, sans-serif;
+  letter-spacing: .08em;
+  transform: rotate(-14deg);
+}
+.stamp.soon { --stamp: #555; }
+
+.toast {
+  position: fixed;
+  left: 50%;
+  bottom: 32px;
+  z-index: 20;
+  padding: 14px 20px;
+  color: var(--note-ink);
+  background: var(--note);
+  font-size: 28px;
+  box-shadow: 3px 4px 0 #0000002a;
+  transform: translateX(-50%) rotate(-2deg);
+}
+
+@media (max-width: 500px) {
+  body { padding-left: 44px; }
+  body::before { left: 30px; }
+  h1 { font-size: 44px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation: none !important; transition: none !important; }
+}
