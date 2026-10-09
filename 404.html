@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>404 · silentnille</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><rect x='2' y='1' width='12' height='14' fill='%23fff7a8' stroke='%231f3a93'/></svg>">
+  <link rel="preload" href="/fonts/ReenieBeanie.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="/style.css">
+  <script>
+    {
+      const theme = localStorage.theme || (matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+      document.documentElement.dataset.theme = theme;
+    }
+  </script>
+  <script type="module" src="/main.js"></script>
+</head>
+<body>
+  <header>
+    <a class="logo" href="/">silentnille</a>
+    <button class="lamp" type="button" aria-label="Licht an/aus">
+      <svg viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
+        <path class="cone" d="M22 13 L36 34 L12 34 Z" stroke="none"/>
+        <path d="M6 37h14M13 37V22l6-8"/>
+        <g class="head"><path d="M15 10l10 6-3 3-10-6z" fill="currentColor"/></g>
+      </svg>
+    </button>
+  </header>
+  <main>
+    <h1>404. Diese Seite ist <mark>abgehauen</mark>.</h1>
+    <p>Ein paar andere auch. Fang so viele, wie du kannst.</p>
+    <p class="hud" aria-live="polite"></p>
+    <div class="game"></div>
+    <p class="result" hidden></p>
+    <p><button class="btn" id="again" type="button">Los</button> <a href="/">Zurück zum Heft</a></p>
+  </main>
+  <script>
+    {
+      const ROUND_SECONDS = 30;
+      const field = document.querySelector('.game');
+      const hud = document.querySelector('.hud');
+      const result = document.querySelector('.result');
+      const again = document.getElementById('again');
+      let score = 0;
+      let left = ROUND_SECONDS;
+      let timer;
+      let spawner;
+
+      const best = () => +localStorage.pagesHighscore || 0;
+      const update = () => { hud.textContent = `Gefangen: ${score} · Noch ${left} s · Rekord: ${best()}`; };
+
+      function spawn() {
+        const page = document.createElement('button');
+        page.className = 'page';
+        page.type = 'button';
+        page.setAttribute('aria-label', 'Seite fangen');
+        page.style.left = Math.random() * (field.clientWidth - 48) + 'px';
+        page.style.top = Math.random() * (field.clientHeight - 60) + 'px';
+        page.style.rotate = Math.random() * 30 - 15 + 'deg';
+        page.addEventListener('click', () => {
+          score++;
+          update();
+          page.remove();
+        });
+        field.append(page);
+        setTimeout(() => page.remove(), 1000);
+      }
+
+      function end() {
+        clearInterval(timer);
+        clearInterval(spawner);
+        field.replaceChildren();
+        localStorage.pagesHighscore = Math.max(score, best());
+        result.textContent = `${score} Seiten gefangen.`;
+        result.hidden = false;
+        again.textContent = 'Nochmal';
+        again.hidden = false;
+        update();
+      }
+
+      function start() {
+        score = 0;
+        left = ROUND_SECONDS;
+        result.hidden = true;
+        again.hidden = true;
+        update();
+        timer = setInterval(() => {
+          left--;
+          update();
+          if (left === 0) end();
+        }, 1000);
+        spawner = setInterval(spawn, 700);
+      }
+
+      again.addEventListener('click', start);
+      update();
+    }
+  </script>
+</body>
+</html>
