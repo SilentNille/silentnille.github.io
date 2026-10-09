@@ -3,6 +3,16 @@
 const root = document.documentElement;
 const reducedMotion = matchMedia('(prefers-reduced-motion: reduce)').matches;
 
+// 1D value noise: hashed integer points, smoothstep in between. Returns 0..1.
+// ponytail: value noise, not true Perlin; enough for wobbly ink lines.
+function noise(x) {
+  const hash = (i) => { const s = Math.sin(i * 127.1 + 311.7) * 43758.5453; return s - Math.floor(s); };
+  const i = Math.floor(x);
+  const f = x - i;
+  const t = f * f * (3 - 2 * f);
+  return hash(i) + (hash(i + 1) - hash(i)) * t;
+}
+
 function toast(text) {
   const el = document.createElement('div');
   el.className = 'toast';
@@ -48,4 +58,26 @@ if (weeks) {
     weeks.append(box);
   }
   document.getElementById('weeks-label').textContent = `${done} von ${SEMESTER_WEEKS} Wochen abgehakt · M.Sc. Medieninformatik`;
+}
+
+// Splash: the <head> script sets data-splash only on a first visit without reduced motion.
+const splash = document.getElementById('splash');
+if (splash && 'splash' in root.dataset) {
+  localStorage.splashSeen = '1';
+  const svg = splash.querySelector('svg');
+  const w = innerWidth;
+  const h = innerHeight;
+  const seed = Math.random() * 1000;
+  svg.setAttribute('viewBox', `0 0 ${w} ${h}`);
+  let paths = '';
+  for (let line = 0; line < 5; line++) {
+    let d = '';
+    for (let x = 0; x <= w; x += 8) {
+      const y = h * (0.3 + line * 0.1) + (noise(seed + line * 7 + x / 150) - 0.5) * h * 0.3;
+      d += `${x ? 'L' : 'M'}${x} ${y.toFixed(1)}`;
+    }
+    paths += `<path pathLength="1" style="animation-delay:${line * 0.12}s" d="${d}"/>`;
+  }
+  svg.innerHTML = paths;
+  setTimeout(() => delete root.dataset.splash, 3100);
 }

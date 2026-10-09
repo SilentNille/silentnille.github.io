@@ -11,11 +11,13 @@
     {
       const theme = localStorage.theme || (matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
       document.documentElement.dataset.theme = theme;
+      if (!localStorage.splashSeen && !matchMedia('(prefers-reduced-motion: reduce)').matches) document.documentElement.dataset.splash = '';
     }
   </script>
   <script src="/main.js" defer></script>
 </head>
 <body>
+  <div id="splash" aria-hidden="true"><svg preserveAspectRatio="none"></svg></div>
   <header>
     <a class="logo" href="/">silentnille</a>
     <button class="lamp" type="button" aria-label="Licht an/aus">

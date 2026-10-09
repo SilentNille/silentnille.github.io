@@ -150,6 +150,29 @@ a.note:hover { transform: rotate(0) scale(1.03); }
 }
 @keyframes tick { from { opacity: 0; transform: scale(.4); } }
 
+/* first-visit splash: ink lines draw themselves, then everything fades */
+#splash { display: none; }
+[data-splash] #splash {
+  display: block;
+  position: fixed;
+  inset: 0;
+  z-index: 10;
+  background: inherit;
+  animation: fade .6s 2.4s forwards;
+}
+#splash svg { width: 100%; height: 100%; }
+#splash path {
+  fill: none;
+  stroke: var(--ink);
+  stroke-width: 2.5;
+  stroke-linecap: round;
+  stroke-dasharray: 1;
+  stroke-dashoffset: 1;
+  animation: draw 1.8s ease-in-out forwards;
+}
+@keyframes draw { to { stroke-dashoffset: 0; } }
+@keyframes fade { to { opacity: 0; visibility: hidden; } }
+
 @media (max-width: 500px) {
   body { padding-left: 44px; }
   body::before { left: 30px; }
