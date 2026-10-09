@@ -138,6 +138,18 @@ a.note:hover { transform: rotate(0) scale(1.03); }
   transform: translateX(-50%) rotate(-2deg);
 }
 
+/* semester weeks: one box per week, done weeks get crossed out */
+.weeks { display: flex; flex-wrap: wrap; gap: 4px; margin: 14px 0 4px; padding: 0; list-style: none; }
+.weeks li { width: 14px; height: 14px; border: 2px solid currentColor; border-radius: 2px; }
+.weeks li.done {
+  background:
+    linear-gradient(45deg, transparent 42%, currentColor 42% 58%, transparent 58%),
+    linear-gradient(-45deg, transparent 42%, currentColor 42% 58%, transparent 58%);
+  animation: tick .3s backwards;
+  animation-delay: calc(var(--i) * 80ms);
+}
+@keyframes tick { from { opacity: 0; transform: scale(.4); } }
+
 @media (max-width: 500px) {
   body { padding-left: 44px; }
   body::before { left: 30px; }
