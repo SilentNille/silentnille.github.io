@@ -84,6 +84,7 @@ mark { color: inherit; background: linear-gradient(transparent 60%, var(--mark) 
   position: relative;
   display: block;
   width: 240px;
+  min-height: 150px;
   padding: 22px 18px 26px;
   color: var(--note-ink);
   background: var(--note);
