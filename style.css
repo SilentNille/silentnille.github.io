@@ -173,6 +173,8 @@ a.note:hover { transform: rotate(0) scale(1.03); }
 @keyframes draw { to { stroke-dashoffset: 0; } }
 @keyframes fade { to { opacity: 0; visibility: hidden; } }
 
+#brush { position: fixed; inset: 0; z-index: 5; pointer-events: none; }
+
 @media (max-width: 500px) {
   body { padding-left: 44px; }
   body::before { left: 30px; }

@@ -81,3 +81,71 @@ if (splash && 'splash' in root.dataset) {
   svg.innerHTML = paths;
   setTimeout(() => delete root.dataset.splash, 3100);
 }
+
+console.log(`%c
+   o  o  o  o  o  o  o
+ _____________________
+|                     |
+|     silentnille     |
+|   ~~~~~~~~~~~~~~~   |
+|_____________________|
+
+Na, neugierig? Schön, dass du reinschaust.`, 'font-family: monospace; color: #1f3a93');
+
+// Ink brush: 7 clicks on the logo (start page only, elsewhere the logo just links home).
+let logoClicks = 0;
+let brush = null;
+let lastPoint = null;
+let brushTime = 0;
+
+document.querySelector('.logo').addEventListener('click', (e) => {
+  if (location.pathname !== '/') return;
+  e.preventDefault();
+  if (++logoClicks % 7 || reducedMotion) return;
+  if (brush) {
+    brush.remove();
+    brush = null;
+  } else {
+    brush = startBrush();
+  }
+});
+
+// ponytail: canvas keeps its start size, a window resize clips the brush until it's toggled again.
+function startBrush() {
+  const c = document.createElement('canvas');
+  c.id = 'brush';
+  c.width = innerWidth;
+  c.height = innerHeight;
+  document.body.append(c);
+  lastPoint = null;
+  const g = c.getContext('2d');
+  (function fade() {
+    if (!c.isConnected) return;
+    g.globalCompositeOperation = 'destination-out';
+    g.fillStyle = 'rgba(0, 0, 0, .06)';
+    g.fillRect(0, 0, c.width, c.height);
+    g.globalCompositeOperation = 'source-over';
+    requestAnimationFrame(fade);
+  })();
+  return c;
+}
+
+addEventListener('pointermove', (e) => {
+  if (!brush) return;
+  brushTime += 0.15;
+  const p = {
+    x: e.clientX + (noise(brushTime) - 0.5) * 14,
+    y: e.clientY + (noise(brushTime + 50) - 0.5) * 14,
+  };
+  if (lastPoint) {
+    const g = brush.getContext('2d');
+    g.strokeStyle = getComputedStyle(root).getPropertyValue('--ink');
+    g.lineWidth = 2.5;
+    g.lineCap = 'round';
+    g.beginPath();
+    g.moveTo(lastPoint.x, lastPoint.y);
+    g.lineTo(p.x, p.y);
+    g.stroke();
+  }
+  lastPoint = p;
+});
