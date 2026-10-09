@@ -44,7 +44,8 @@ Light mode is a school notebook. Dark mode, "Blaupause", is the same notebook wi
 | `--margin` (red left rule) | `#e8474c` | `#ff8a8a` |
 | `--mark` (highlighter) | `#fff27a` | `#f5d76e66` |
 | `--note` / `--note2` (sticky notes) | `#fff7a8` / `#c9f0ff` | `#f5d76e` / `#9fd8ef` |
-| `--stamp` | `#e8474c` | `#d6336c` |
+| `--stamp` (stamps sit on the notes) | `#b3202a` | `#b3202a` |
+| grey stamp `BALD` | `#555` | `#555` |
 
 - Font: Reenie Beanie everywhere, set through one variable `--hand`. If long texts read badly, swapping the body font is one line.
 - Grid paper is two `linear-gradient`s on `body`. The red margin rule is a fixed pseudo-element.
@@ -84,7 +85,7 @@ Reference mockup: `.superpowers/brainstorm/*/content/final.html` (not committed)
 
 ### 404: "Fang die Seite"
 - Headline „404. Diese Seite ist abgehauen." and below it „Ein paar andere auch. Fang so viele, wie du kannst."
-- A round lasts 30 s. Small paper pages pop up at random spots, each stays about 1 s, and click or tap catches it (+1). Score and timer show as handwriting.
+- A button „Los" starts a round, and a round lasts 30 s. Small paper pages pop up at random spots, each stays about 1 s, and click or tap catches it (+1). Score and timer show as handwriting.
 - At the end: „{n} Seiten gefangen." The best score is kept in `localStorage.pagesHighscore` and shown as „Rekord: {n}". Buttons: „Nochmal" and „Zurück zum Heft" (links to `/`).
 - The 404 page is served for any missing sub-path, so relative asset paths would break there. That's why every page uses root-absolute paths (`/style.css`, `/main.js`, `/fonts/…`).
 
