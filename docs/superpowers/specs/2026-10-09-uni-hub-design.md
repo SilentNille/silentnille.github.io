@@ -131,16 +131,16 @@ New homework: copy `01-perlin-noise/` to `02-…/`, swap `sketch.js` and the tex
 
 There's no test framework because the logic is too small to need one. I'll check manually with `python3 -m http.server`:
 
-- [ ] Both themes, toggled with the lamp, survive a reload, and there's no flash on load
-- [ ] With no saved theme, the system setting wins
-- [ ] Splash plays on the first visit only (clear localStorage to repeat it) and never with reduced motion
-- [ ] Week count is correct for today. Temporarily faking `today` before START and after END gives 0 and 26
-- [ ] 7 logo clicks turn the brush on, 7 more turn it off
-- [ ] Console greeting appears
-- [ ] 5 fast lamp toggles show the toast
+- [x] Both themes, toggled with the lamp, survive a reload, and there's no flash on load
+- [x] With no saved theme, the system setting wins
+- [x] Splash plays on the first visit only (clear localStorage to repeat it) and never with reduced motion
+- [x] Week count is correct for today. Temporarily faking `today` before START and after END gives 0 and 26
+- [x] 7 logo clicks turn the brush on, 7 more turn it off
+- [x] Console greeting appears
+- [x] 5 fast lamp toggles show the toast
 - [ ] `/gibtsnicht` shows the 404 game with styles, the round ends after 30 s, and the highscore survives a reload
-- [ ] p5 sketch runs and its controls work
-- [ ] Layout holds at 375 px width
+- [x] p5 sketch runs and its controls work
+- [x] Layout holds at 375 px width
 - [ ] After pushing: Pages is set to "Deploy from branch main /", and the live URL works
 
 ## Out of scope
