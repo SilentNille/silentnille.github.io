@@ -1,4 +1,5 @@
-// Shared behaviour for every page. Loaded with `defer`, so the DOM is ready.
+// Shared behaviour for every page. Loaded as a module: deferred, and nothing leaks into
+// the global scope, where p5 sketches define their own names (p5 has its own noise()).
 
 const root = document.documentElement;
 const reducedMotion = matchMedia('(prefers-reduced-motion: reduce)').matches;

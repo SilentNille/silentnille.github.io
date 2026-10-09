@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>HA 1 · Drei Ebenen Perlin Noise · silentnille</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><rect x='2' y='1' width='12' height='14' fill='%23fff7a8' stroke='%231f3a93'/></svg>">
+  <link rel="preload" href="/fonts/ReenieBeanie.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="/style.css">
+  <script>
+    {
+      const theme = localStorage.theme || (matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+      document.documentElement.dataset.theme = theme;
+    }
+  </script>
+  <script type="module" src="/main.js"></script>
+</head>
+<body>
+  <header>
+    <a class="logo" href="/">silentnille</a>
+    <button class="lamp" type="button" aria-label="Licht an/aus">
+      <svg viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
+        <path class="cone" d="M22 13 L36 34 L12 34 Z" stroke="none"/>
+        <path d="M6 37h14M13 37V22l6-8"/>
+        <g class="head"><path d="M15 10l10 6-3 3-10-6z" fill="currentColor"/></g>
+      </svg>
+    </button>
+  </header>
+  <main>
+    <p class="crumb"><a href="/">silentnille</a> / <a href="/generative-gestaltung/">generative gestaltung</a> / HA 1</p>
+    <h1>Drei Ebenen <mark>Perlin Noise</mark></h1>
+    <div class="paper" id="sketch"></div>
+    <div id="sketch-controls"></div>
+    <h2>Aufgabe</h2>
+    <p>Perlin Noise selbst umsetzen und drei Ebenen mit einem Blend-Modus übereinanderlegen.</p>
+    <h2>Was ich gemacht habe</h2>
+    <p>Kommt, sobald der Sketch fertig ist.</p>
+    <h2>Was ich gelernt habe</h2>
+    <p>Kommt, sobald der Sketch fertig ist.</p>
+  </main>
+  <script src="https://cdn.jsdelivr.net/npm/p5@2.3.4/lib/p5.min.js"></script>
+  <script src="sketch.js"></script>
+</body>
+</html>

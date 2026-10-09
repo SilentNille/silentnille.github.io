@@ -176,6 +176,32 @@ a.note:hover { transform: rotate(0) scale(1.03); }
 
 #brush { position: fixed; inset: 0; z-index: 5; pointer-events: none; }
 
+/* sketch on a sheet of paper, controls styled as handwriting */
+.paper {
+  margin-top: 12px;
+  padding: 10px;
+  background: #fff;
+  border: 2px solid var(--ink);
+  border-radius: 3px;
+  box-shadow: 3px 4px 0 #0000001a;
+  transform: rotate(-.4deg);
+}
+.paper canvas { display: block; max-width: 100%; height: auto !important; }
+#sketch-controls { display: flex; flex-wrap: wrap; align-items: center; gap: 14px 22px; margin-top: 14px; }
+#sketch-controls input[type="range"] { width: 120px; accent-color: var(--margin); }
+#sketch-controls select,
+#sketch-controls button,
+.btn {
+  padding: 0 10px;
+  color: var(--ink);
+  background: transparent;
+  border: 2px solid var(--ink);
+  border-radius: 14px 4px 12px 5px;
+  font: inherit;
+  font-size: 22px;
+  cursor: pointer;
+}
+
 @media (max-width: 500px) {
   body { padding-left: 44px; }
   body::before { left: 30px; }
