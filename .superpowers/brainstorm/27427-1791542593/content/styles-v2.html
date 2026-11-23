@@ -1,0 +1,172 @@
+<style>
+  .stack { display: grid; gap: 28px; }
+  .mk { position: relative; height: 480px; overflow: hidden; border-radius: 4px; }
+  .lbl { margin: 10px 2px 0; }
+  .lbl h3 { margin: 0; } .lbl p { margin: 2px 0 0; opacity: .75; }
+
+  /* ---------- 1 PLOTTER ---------- */
+  .p { background: #f1ede3; color: #1b1b1b; font-family: "Helvetica Neue", Arial, sans-serif; padding: 34px 40px; }
+  .p::before, .p::after { content: ""; position: absolute; width: 18px; height: 18px; border: 1px solid #1b1b1b; }
+  .p::before { top: 12px; left: 12px; border-right: 0; border-bottom: 0; }
+  .p::after { bottom: 12px; right: 12px; border-left: 0; border-top: 0; }
+  .p .reg { position: absolute; top: 14px; right: 16px; width: 16px; height: 16px; border: 1px solid #e5322d; border-radius: 50%; }
+  .p .reg::before, .p .reg::after { content: ""; position: absolute; background: #e5322d; }
+  .p .reg::before { left: 7px; top: -5px; width: 1px; height: 26px; } .p .reg::after { top: 7px; left: -5px; height: 1px; width: 26px; }
+  .p .hd { display: flex; justify-content: space-between; font-size: 11px; letter-spacing: .12em; text-transform: uppercase; border-bottom: 1px solid #1b1b1b; padding-bottom: 6px; }
+  .p svg.field { display: block; margin: 14px 0 10px; width: 100%; height: 170px; }
+  .p svg.field path { fill: none; stroke: #1b1b1b; stroke-width: .6; }
+  .p svg.field path.r { stroke: #e5322d; stroke-width: 1; }
+  .p .row { display: grid; grid-template-columns: 1fr 1fr 210px; gap: 22px; font-size: 12px; }
+  .p .fig { border-top: 1px solid #1b1b1b; padding-top: 6px; }
+  .p .fig .n { font-size: 10px; letter-spacing: .1em; color: #e5322d; }
+  .p .fig h4 { margin: 3px 0; font-size: 15px; font-weight: 500; }
+  .p .fig p { margin: 0; line-height: 1.4; }
+  .p table { border-collapse: collapse; width: 100%; font-size: 10px; }
+  .p td { border: 1px solid #1b1b1b; padding: 3px 5px; }
+  .p td:first-child { color: #777; width: 70px; }
+  .p .bar { height: 8px; border: 1px solid #1b1b1b; margin-top: 3px; background: repeating-linear-gradient(45deg, #1b1b1b 0 1px, transparent 1px 4px) left / 4.4% 100% no-repeat; }
+
+  /* ---------- 2 SWISS ---------- */
+  .s { background: #fff; color: #000; font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; padding: 30px 36px; display: grid; grid-template-columns: repeat(12, 1fr); column-gap: 14px; align-content: start; }
+  .s .top { grid-column: 1 / -1; display: flex; justify-content: space-between; font-size: 12px; font-weight: 500; }
+  .s .top .dot { width: 14px; height: 14px; border-radius: 50%; background: #ff3b1f; display: inline-block; }
+  .s h1 { grid-column: 1 / 9; font-size: 84px; line-height: .86; letter-spacing: -.045em; margin: 26px 0 0; font-weight: 700; }
+  .s .side { grid-column: 9 / -1; align-self: end; font-size: 12px; line-height: 1.35; }
+  .s .bar { grid-column: 1 / -1; height: 14px; background: #000; margin: 22px 0 6px; position: relative; }
+  .s .bar i { position: absolute; inset: 0 auto 0 0; width: 4.4%; background: #ff3b1f; }
+  .s .bl { grid-column: 1 / -1; font-size: 11px; display: flex; justify-content: space-between; }
+  .s .c { grid-column: span 6; border-top: 2px solid #000; margin-top: 22px; padding-top: 8px; display: grid; grid-template-columns: 70px 1fr; }
+  .s .c .num { font-size: 56px; font-weight: 700; line-height: .8; letter-spacing: -.04em; }
+  .s .c.w .num { color: #bbb; }
+  .s .c h4 { margin: 0 0 4px; font-size: 17px; letter-spacing: -.01em; }
+  .s .c p { margin: 0; font-size: 12px; line-height: 1.35; }
+  .s .c .st { font-size: 11px; font-weight: 700; color: #ff3b1f; text-transform: uppercase; letter-spacing: .05em; }
+  .s .c.w .st { color: #999; }
+
+  /* ---------- 3 RISO ---------- */
+  .r { background: #f3efe4; color: #0078bf; font-family: "Avenir Next", Futura, sans-serif; padding: 30px 36px; isolation: isolate; }
+  .r .grain { position: absolute; inset: 0; opacity: .35; mix-blend-mode: multiply; pointer-events: none; z-index: 5; }
+  .r .blob { position: absolute; border-radius: 50%; mix-blend-mode: multiply; }
+  .r .b1 { width: 260px; height: 260px; background: #ff48b0; right: 60px; top: -40px; }
+  .r .b2 { width: 220px; height: 220px; background: #0078bf; right: -10px; top: 60px; opacity: .9;
+           background-image: radial-gradient(#f3efe4 22%, transparent 24%); background-size: 7px 7px; background-color: #0078bf; }
+  .r .b3 { width: 120px; height: 120px; background: #ffe800; left: 44%; top: 210px; }
+  .r .top { font-size: 12px; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; position: relative; }
+  .r h1 { position: relative; font-size: 64px; line-height: .95; margin: 34px 0 0; font-weight: 800; color: #0078bf; letter-spacing: -.02em; }
+  .r h1::after { content: attr(data-t); position: absolute; left: 3px; top: 2px; color: #ff48b0; mix-blend-mode: multiply; }
+  .r .bar { position: relative; width: 52%; height: 12px; margin: 20px 0 4px; background-image: radial-gradient(#0078bf 30%, transparent 32%); background-size: 6px 6px; }
+  .r .bar i { position: absolute; inset: 0 auto 0 0; width: 4.4%; background: #ff48b0; mix-blend-mode: multiply; }
+  .r small { font-size: 11px; font-weight: 600; position: relative; }
+  .r .cards2 { position: relative; display: flex; gap: 22px; margin-top: 28px; }
+  .r .c { width: 250px; padding: 14px 16px; background: #ff48b0; color: #0f2b6b; mix-blend-mode: multiply; transform: rotate(-1.5deg); }
+  .r .c.w { background: #ffe800; transform: rotate(1deg); }
+  .r .c h4 { margin: 0 0 4px; font-size: 17px; }
+  .r .c p { margin: 0; font-size: 12px; line-height: 1.35; }
+  .r .c .st { font-size: 10px; font-weight: 800; letter-spacing: .12em; text-transform: uppercase; }
+
+  /* ---------- 4 KAROPAPIER ---------- */
+  .k { background-color: #fdfdfb; background-image: linear-gradient(#bcd3ea 1px, transparent 1px), linear-gradient(90deg, #bcd3ea 1px, transparent 1px); background-size: 18px 18px;
+       color: #1f3a93; font-family: "Bradley Hand", "Noteworthy", "Segoe Print", cursive; padding: 26px 30px 26px 76px; }
+  .k::before { content: ""; position: absolute; top: 0; bottom: 0; left: 56px; width: 2px; background: #e8474c; opacity: .7; }
+  .k .top { display: flex; justify-content: space-between; font-size: 15px; }
+  .k h1 { font-size: 40px; margin: 16px 0 0; font-weight: 700; transform: rotate(-1deg); }
+  .k h1 u { text-decoration: none; background: linear-gradient(transparent 62%, #fff27a 62%, #fff27a 90%, transparent 90%); }
+  .k .weeks { display: flex; gap: 3px; margin: 14px 0 4px; }
+  .k .weeks span { width: 13px; height: 13px; border: 1.5px solid #1f3a93; border-radius: 2px; }
+  .k .weeks span.x { background: linear-gradient(45deg, transparent 45%, #1f3a93 45% 55%, transparent 55%), linear-gradient(-45deg, transparent 45%, #1f3a93 45% 55%, transparent 55%); }
+  .k small { font-size: 14px; }
+  .k .notes { display: flex; gap: 34px; margin-top: 26px; }
+  .k .n { width: 230px; min-height: 130px; padding: 18px 16px 14px; background: #fff7a8; box-shadow: 2px 3px 0 #0000001a; position: relative; transform: rotate(-2deg); font-size: 15px; line-height: 1.3; }
+  .k .n.w { background: #c9f0ff; transform: rotate(1.5deg); }
+  .k .n::before { content: ""; position: absolute; top: -10px; left: 70px; width: 80px; height: 22px; background: #ffffffaa; border: 1px solid #0000000d; transform: rotate(3deg); }
+  .k .n h4 { margin: 0 0 6px; font-size: 19px; }
+  .k .stamp { position: absolute; right: -14px; bottom: -12px; border: 2.5px solid #e8474c; color: #e8474c; border-radius: 50%; width: 58px; height: 58px; display: grid; place-items: center;
+              font: 700 11px "Helvetica Neue", Arial, sans-serif; letter-spacing: .08em; transform: rotate(-14deg); opacity: .85; }
+  .k .stamp.g { border-color: #8a8a8a; color: #8a8a8a; }
+  .k svg.sq { position: absolute; right: 40px; top: 90px; }
+</style>
+
+<h2>Vier Richtungen, weg vom KI-Standard</h2>
+<p class="subtitle">Gleicher Inhalt, vier Haltungen. Sag mir, was dir gefällt und was nicht, gern auch einzelne Details („Stempel aus 4, Raster aus 2"). Klick markiert eine Variante.</p>
+
+<div class="stack">
+
+  <div class="card" data-choice="plotter" onclick="toggleSelect(this)">
+    <div class="mk p">
+      <div class="reg"></div>
+      <div class="hd"><span>silentnille</span><span>Blatt 00 · Übersicht</span><span>☾</span></div>
+      <svg class="field" id="pfield" viewBox="0 0 800 170" preserveAspectRatio="none"></svg>
+      <div class="row">
+        <div class="fig"><div class="n">Abb. 01 · läuft</div><h4>Generative Gestaltung</h4><p>Hausaufgabe 1: drei Ebenen Perlin Noise, übereinander geblendet.</p></div>
+        <div class="fig"><div class="n" style="color:#888">Abb. 02 · geplant</div><h4>Wissen als Ressource</h4><p>Thema noch offen. Wahrscheinlich NotebookLM.</p></div>
+        <table>
+          <tr><td>Studiengang</td><td>M.Sc. Medieninformatik</td></tr>
+          <tr><td>Semester</td><td>1 · WiSe 26/27</td></tr>
+          <tr><td>Stand</td><td>09.10.2026</td></tr>
+          <tr><td>Fortschritt</td><td>Woche 2 von 26<div class="bar"></div></td></tr>
+        </table>
+      </div>
+    </div>
+    <div class="lbl"><h3>1 · Plotter</h3><p>Technische Zeichnung. Haarlinien, Passkreuz, Schriftfeld wie auf einem Bauplan. Das Noise-Feld oben ist echt generiert. Dunkel: schwarzes Papier, weiße Tinte.</p></div>
+  </div>
+
+  <div class="card" data-choice="swiss" onclick="toggleSelect(this)">
+    <div class="mk s">
+      <div class="top"><span>silentnille</span><span>WiSe 26/27</span><span class="dot"></span></div>
+      <h1>Semester<br>eins.</h1>
+      <div class="side">M.Sc. Medieninformatik.<br>Was ich gerade baue, lerne und verwerfe.</div>
+      <div class="bar"><i></i></div>
+      <div class="bl"><span>01.10.2026</span><span>Woche 2 von 26</span><span>31.03.2027</span></div>
+      <div class="c"><div class="num">01</div><div><div class="st">Läuft</div><h4>Generative Gestaltung</h4><p>Hausaufgabe 1: drei Ebenen Perlin Noise, übereinander geblendet.</p></div></div>
+      <div class="c w"><div class="num">02</div><div><div class="st">Geplant</div><h4>Wissen als Ressource</h4><p>Thema noch offen. Wahrscheinlich NotebookLM.</p></div></div>
+    </div>
+    <div class="lbl"><h3>2 · Schweizer Raster</h3><p>Große Typo, strenges 12er-Raster, nur Schwarz, Weiß und ein Rot. Animation kommt hier über Typo und den Balken, kaum Deko. Dunkel: einfach invertiert.</p></div>
+  </div>
+
+  <div class="card" data-choice="riso" onclick="toggleSelect(this)">
+    <div class="mk r">
+      <svg class="grain" width="100%" height="100%"><filter id="g"><feTurbulence type="fractalNoise" baseFrequency=".9" numOctaves="2"/><feColorMatrix values="0 0 0 0 .5  0 0 0 0 .5  0 0 0 0 .5  0 0 0 .6 0"/></filter><rect width="100%" height="100%" filter="url(#g)"/></svg>
+      <div class="blob b1"></div><div class="blob b2"></div><div class="blob b3"></div>
+      <div class="top">silentnille · Heft 01</div>
+      <h1 data-t="Erstes Semester,">Erstes Semester,</h1>
+      <h1 data-t="erste Sketches." style="margin-top:0">erste Sketches.</h1>
+      <div class="bar"><i></i></div><small>Woche 2 von 26 · M.Sc. Medieninformatik</small>
+      <div class="cards2">
+        <div class="c"><div class="st">läuft</div><h4>Generative Gestaltung</h4><p>Hausaufgabe 1: drei Ebenen Perlin Noise, übereinander geblendet.</p></div>
+        <div class="c w"><div class="st">geplant</div><h4>Wissen als Ressource</h4><p>Thema noch offen. Wahrscheinlich NotebookLM.</p></div>
+      </div>
+    </div>
+    <div class="lbl"><h3>3 · Riso-Druck</h3><p>Wie ein Zine aus dem Risographen: Pink und Blau überdrucken sich per multiply, leicht verrutschte Schrift, Rasterpunkte, Papierkorn. Die Blend-Modes aus deiner Hausaufgabe, als ganze Website. Dunkel: schwarzes Papier mit screen statt multiply.</p></div>
+  </div>
+
+  <div class="card" data-choice="karo" onclick="toggleSelect(this)">
+    <div class="mk k">
+      <div class="top"><span>silentnille</span><span>☀ / ☾</span></div>
+      <h1>Mein <u>erstes Semester</u> Master</h1>
+      <div class="weeks"><span class="x"></span><span class="x"></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div>
+      <small>2 von 26 Wochen abgehakt · Medieninformatik</small>
+      <svg class="sq" width="120" height="60" viewBox="0 0 120 60" fill="none" stroke="#1f3a93" stroke-width="1.6" stroke-linecap="round"><path d="M4 40 C 20 5, 30 55, 48 28 S 75 8, 88 34 S 108 50, 116 20"/><path d="M100 14 l16 6 -10 12" /></svg>
+      <div class="notes">
+        <div class="n"><h4>Generative Gestaltung</h4>HA 1: drei Ebenen Perlin Noise, übereinander geblendet.<div class="stamp">LÄUFT</div></div>
+        <div class="n w"><h4>Wissen als Ressource</h4>Thema? Noch offen. Wahrscheinlich NotebookLM.<div class="stamp g">BALD</div></div>
+      </div>
+    </div>
+    <div class="lbl"><h3>4 · Karoheft</h3><p>Schulheft mit rotem Rand, Kuli-Schrift, Post-its mit Tesa, Stempel als Status, Wochen zum Abhaken. Persönlich und warm. Dunkel: Tafel-Grün mit Kreide.</p></div>
+  </div>
+
+</div>
+
+<script>
+  // simple smooth pseudo-noise for the plotter field
+  (function () {
+    var svg = document.getElementById('pfield'); if (!svg) return;
+    function n(x, s) { return Math.sin(x * 0.011 + s) * 0.5 + Math.sin(x * 0.023 + s * 1.7) * 0.3 + Math.sin(x * 0.047 + s * 2.3) * 0.2; }
+    var out = '';
+    for (var i = 0; i < 34; i++) {
+      var d = '', base = 12 + i * 4.4;
+      for (var x = 0; x <= 800; x += 8) d += (x ? 'L' : 'M') + x + ' ' + (base + n(x, i * 0.18) * 28).toFixed(1);
+      out += '<path' + (i === 17 ? ' class="r"' : '') + ' d="' + d + '"/>';
+    }
+    svg.innerHTML = out;
+  })();
+</script>

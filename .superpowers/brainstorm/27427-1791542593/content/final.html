@@ -1,0 +1,113 @@
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Reenie+Beanie&display=swap">
+<style>
+  .pg { --bg: #fdfdfb; --grid: #bcd3ea; --ink: #1f3a93; --margin: #e8474c; --mark: #fff27a; --note: #fff7a8; --note2: #c9f0ff; --stamp: #e8474c;
+        background-color: var(--bg); background-image: linear-gradient(var(--grid) 1px, transparent 1px), linear-gradient(90deg, var(--grid) 1px, transparent 1px); background-size: 18px 18px;
+        color: var(--ink); font-family: "Reenie Beanie", cursive; padding: 16px 18px 22px 58px; position: relative; border-radius: 4px; overflow: hidden; }
+  .pg.dark { --bg: #13294b; --grid: #ffffff1c; --ink: #e6eefc; --margin: #ff8a8a; --mark: #f5d76e66; --note: #f5d76e; --note2: #9fd8ef; --stamp: #d6336c; }
+  .pg::before { content: ""; position: absolute; top: 0; bottom: 0; left: 40px; width: 2px; background: var(--margin); opacity: .6; }
+  .pg .top { display: flex; justify-content: space-between; align-items: center; font-size: 22px; }
+  .pg h1 { font-size: 46px; font-weight: 400; margin: 10px 0 4px; line-height: .95; }
+  .pg h1 u { text-decoration: none; background: linear-gradient(transparent 60%, var(--mark) 60%, var(--mark) 90%, transparent 90%); }
+  .pg .weeks { display: flex; gap: 3px; margin: 10px 0 2px; flex-wrap: wrap; }
+  .pg .weeks span { width: 11px; height: 11px; border: 1.5px solid currentColor; border-radius: 2px; }
+  .pg .weeks span.x { background: linear-gradient(45deg, transparent 42%, currentColor 42% 58%, transparent 58%), linear-gradient(-45deg, transparent 42%, currentColor 42% 58%, transparent 58%); }
+  .pg small { font-size: 20px; }
+  .pg .notes { display: flex; gap: 22px; margin-top: 20px; }
+  .pg .n { width: 175px; padding: 16px 13px 12px; background: var(--note); color: #1f3a93; font-size: 20px; line-height: 1.02; transform: rotate(-2deg); position: relative; box-shadow: 2px 3px 0 #0000002a; }
+  .pg .n.w { background: var(--note2); transform: rotate(1.5deg); }
+  .pg .n::before { content: ""; position: absolute; top: -9px; left: 55px; width: 66px; height: 18px; background: #ffffffaa; transform: rotate(3deg); }
+  .pg .n b { display: block; font-size: 25px; font-weight: 400; margin-bottom: 4px; }
+  .pg .stamp { position: absolute; right: -12px; bottom: -14px; border: 2.5px solid var(--stamp); color: var(--stamp); border-radius: 50%; width: 50px; height: 50px; display: grid; place-items: center;
+               font: 700 10px "Helvetica Neue", Arial, sans-serif; letter-spacing: .08em; transform: rotate(-14deg); background: transparent; }
+  .pg .stamp.g { border-color: #8a8a8a; color: #8a8a8a; }
+
+  /* lamp toggle */
+  .lamp { width: 34px; height: 34px; color: var(--ink); cursor: pointer; }
+  .lamp .cone { fill: var(--mark); opacity: .9; transform-origin: 24px 12px; animation: glow 2.4s ease-in-out infinite; }
+  .dark .lamp .cone { opacity: 0; animation: none; }
+  .lamp .head { transform-origin: 14px 14px; transition: transform .4s; }
+  .dark .lamp .head { transform: rotate(-18deg); }
+  @keyframes glow { 50% { opacity: .55; } }
+
+  /* task page */
+  .tk h1 { font-size: 40px; }
+  .tk .crumb { font-size: 20px; opacity: .7; }
+  .tk canvas { display: block; width: 100%; height: 220px; border: 2px solid var(--ink); border-radius: 3px; margin: 10px 0 8px; background: #fff; transform: rotate(-.4deg); box-shadow: 3px 4px 0 #0000001a; }
+  .tk .ctrl { display: flex; gap: 18px; align-items: center; font-size: 22px; flex-wrap: wrap; }
+  .tk input[type=range] { accent-color: var(--margin); width: 110px; }
+  .tk select, .tk button { font: inherit; font-size: 20px; color: var(--ink); background: transparent; border: 1.5px solid var(--ink); border-radius: 12px 3px 10px 4px; padding: 0 8px; cursor: pointer; }
+  .tk h2 { font-size: 30px; font-weight: 400; margin: 14px 0 0; }
+  .tk p { font-size: 22px; line-height: 1.05; margin: 2px 0; max-width: 560px; }
+</style>
+
+<h2>Alles zusammen</h2>
+<p class="subtitle">Startseite hell und dunkel, die Lampe oben rechts ist der Umschalter. Darunter die Aufgabenseite als Spielwiese, der Sketch ist eine echte Vorschau mit drei Noise-Ebenen. Die Regler funktionieren.</p>
+
+<div class="split">
+  <div class="pg">
+    <div class="top"><span>silentnille</span>
+      <svg class="lamp" viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path class="cone" d="M22 13 L36 34 L12 34 Z" stroke="none"/><path d="M6 37h14M13 37V22l6-8"/><g class="head"><path d="M15 10l10 6-3 3-10-6z" fill="currentColor"/></g></svg></div>
+    <h1>Mein <u>erstes Semester</u> Master</h1>
+    <div class="weeks"><span class="x"></span><span class="x"></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div>
+    <small>2 von 26 Wochen abgehakt · Medieninformatik</small>
+    <div class="notes">
+      <div class="n"><b>Generative Gestaltung</b>HA 1: drei Ebenen Perlin Noise, übereinander geblendet.<div class="stamp">LÄUFT</div></div>
+      <div class="n w"><b>Wissen als Ressource</b>Thema? Noch offen. Wahrscheinlich NotebookLM.<div class="stamp g">BALD</div></div>
+    </div>
+  </div>
+  <div class="pg dark">
+    <div class="top"><span>silentnille</span>
+      <svg class="lamp" viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path class="cone" d="M22 13 L36 34 L12 34 Z" stroke="none"/><path d="M6 37h14M13 37V22l6-8"/><g class="head"><path d="M15 10l10 6-3 3-10-6z" fill="currentColor"/></g></svg></div>
+    <h1>Mein <u>erstes Semester</u> Master</h1>
+    <div class="weeks"><span class="x"></span><span class="x"></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div>
+    <small>2 von 26 Wochen abgehakt · Medieninformatik</small>
+    <div class="notes">
+      <div class="n"><b>Generative Gestaltung</b>HA 1: drei Ebenen Perlin Noise, übereinander geblendet.<div class="stamp">LÄUFT</div></div>
+      <div class="n w"><b>Wissen als Ressource</b>Thema? Noch offen. Wahrscheinlich NotebookLM.<div class="stamp g">BALD</div></div>
+    </div>
+  </div>
+</div>
+
+<div class="pg tk" style="margin-top:24px">
+  <div class="top"><span class="crumb">silentnille / generative gestaltung / HA 1</span><span>☾</span></div>
+  <h1>Drei Ebenen Perlin Noise</h1>
+  <canvas id="nz" width="800" height="220"></canvas>
+  <div class="ctrl">
+    <label>Ebene 1 <input type="range" min="2" max="40" value="8" id="s1"></label>
+    <label>Ebene 2 <input type="range" min="2" max="40" value="18" id="s2"></label>
+    <label>Ebene 3 <input type="range" min="2" max="40" value="32" id="s3"></label>
+    <select id="bm"><option>multiply</option><option>screen</option><option>difference</option><option>overlay</option></select>
+    <button id="rr">neu würfeln</button>
+  </div>
+  <h2>Was ich gemacht habe</h2>
+  <p>Drei Noise-Felder mit unterschiedlicher Skalierung, jedes in einer eigenen Farbe. Übereinander gelegt mit blendMode. Bei multiply wird es schnell matschig, difference sieht am wildesten aus.</p>
+</div>
+
+<script>
+(function () {
+  var c = document.getElementById('nz'); if (!c) return;
+  var g = c.getContext('2d'), seed = Math.random() * 1000;
+  // small value noise: hashed grid + smooth interpolation (preview only)
+  function h(x, y) { var s = Math.sin(x * 127.1 + y * 311.7 + seed) * 43758.5453; return s - Math.floor(s); }
+  function sm(t) { return t * t * (3 - 2 * t); }
+  function n(x, y) { var xi = Math.floor(x), yi = Math.floor(y), xf = sm(x - xi), yf = sm(y - yi);
+    var a = h(xi, yi), b = h(xi + 1, yi), cc = h(xi, yi + 1), d = h(xi + 1, yi + 1);
+    return a + (b - a) * xf + (cc - a) * yf + (a - b - cc + d) * xf * yf; }
+  var cols = [[232, 71, 76], [31, 58, 147], [245, 215, 110]];
+  function layer(scale, col) {
+    var o = document.createElement('canvas'); o.width = 200; o.height = 55; var og = o.getContext('2d'), im = og.createImageData(200, 55);
+    for (var y = 0; y < 55; y++) for (var x = 0; x < 200; x++) { var v = n(x / scale, y / scale + scale), i = (y * 200 + x) * 4;
+      im.data[i] = 255 - (255 - col[0]) * v; im.data[i + 1] = 255 - (255 - col[1]) * v; im.data[i + 2] = 255 - (255 - col[2]) * v; im.data[i + 3] = 255; }
+    og.putImageData(im, 0, 0); return o;
+  }
+  function draw() {
+    g.globalCompositeOperation = 'source-over'; g.fillStyle = '#fff'; g.fillRect(0, 0, 800, 220);
+    var ids = ['s1', 's2', 's3'], bm = document.getElementById('bm').value;
+    ids.forEach(function (id, k) { g.globalCompositeOperation = k ? bm : 'source-over'; g.drawImage(layer(+document.getElementById(id).value / 2, cols[k]), 0, 0, 800, 220); });
+  }
+  ['s1', 's2', 's3', 'bm'].forEach(function (id) { document.getElementById(id).addEventListener('input', draw); });
+  document.getElementById('rr').addEventListener('click', function () { seed = Math.random() * 1000; draw(); });
+  document.querySelectorAll('.lamp').forEach(function (l) { l.addEventListener('click', function () { l.closest('.pg').classList.toggle('dark'); }); });
+  draw();
+})();
+</script>

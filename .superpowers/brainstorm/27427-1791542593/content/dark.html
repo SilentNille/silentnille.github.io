@@ -1,0 +1,76 @@
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Reenie+Beanie&display=swap">
+<style>
+  .dk { font-family: "Reenie Beanie", cursive; padding: 16px 18px 20px 54px; position: relative; border-radius: 4px; min-height: 260px; overflow: hidden; }
+  .dk::before { content: ""; position: absolute; top: 0; bottom: 0; left: 36px; width: 2px; }
+  .dk .top { display: flex; justify-content: space-between; font-size: 20px; }
+  .dk h1 { font-size: 40px; font-weight: 400; margin: 6px 0 4px; line-height: 1; }
+  .dk h1 u { text-decoration: none; }
+  .dk .weeks { display: flex; gap: 3px; margin: 8px 0 2px; }
+  .dk .weeks span { width: 11px; height: 11px; border: 1.5px solid currentColor; border-radius: 2px; }
+  .dk .weeks span.x { background: linear-gradient(45deg, transparent 42%, currentColor 42% 58%, transparent 58%), linear-gradient(-45deg, transparent 42%, currentColor 42% 58%, transparent 58%); }
+  .dk small { font-size: 19px; }
+  .dk .n { display: inline-block; width: 190px; margin-top: 16px; padding: 12px 14px; font-size: 20px; line-height: 1.05; transform: rotate(-2deg); position: relative; }
+  .dk .n b { display: block; font-size: 24px; font-weight: 400; margin-bottom: 4px; }
+  .dk .stamp { position: absolute; right: -12px; bottom: -12px; border: 2.5px solid; border-radius: 50%; width: 50px; height: 50px; display: grid; place-items: center;
+               font: 700 10px "Helvetica Neue", Arial, sans-serif; letter-spacing: .08em; transform: rotate(-14deg); }
+
+  /* A Tafel */
+  .ta { background: #24382d; color: #eef0e6; background-image: radial-gradient(ellipse at 30% 20%, #ffffff10, transparent 60%), radial-gradient(ellipse at 80% 90%, #ffffff0a, transparent 50%); text-shadow: 0 0 1px #ffffff66; }
+  .ta::before { background: #f2a7a7; opacity: .5; }
+  .ta h1 u { color: #ffe680; }
+  .ta .n { border: 2px dashed #eef0e6aa; }
+  .ta .stamp { color: #f2a7a7; border-color: #f2a7a7; }
+
+  /* B Blaupause */
+  .bp { background-color: #13294b; color: #e6eefc; background-image: linear-gradient(#ffffff1c 1px, transparent 1px), linear-gradient(90deg, #ffffff1c 1px, transparent 1px); background-size: 18px 18px; }
+  .bp::before { background: #ff8a8a; opacity: .6; }
+  .bp h1 u { background: linear-gradient(transparent 62%, #f5d76e66 62%, #f5d76e66 90%, transparent 90%); }
+  .bp .n { background: #f5d76e; color: #13294b; box-shadow: 2px 3px 0 #0006; }
+  .bp .stamp { color: #d6336c; border-color: #d6336c; }
+
+  /* C Schwarzes Heft */
+  .sh { background-color: #161616; color: #d9d9d9; background-image: linear-gradient(#ffffff12 1px, transparent 1px), linear-gradient(90deg, #ffffff12 1px, transparent 1px); background-size: 18px 18px; }
+  .sh::before { background: #ff6b6b; opacity: .55; }
+  .sh h1 u { color: #fff; background: linear-gradient(transparent 62%, #39ff8f55 62%, #39ff8f55 90%, transparent 90%); }
+  .sh .n { background: #2a2a2a; border: 1.5px solid #ffffff30; color: #f0f0f0; }
+  .sh .n b { color: #9ef0c0; }
+  .sh .stamp { color: #ff6b6b; border-color: #ff6b6b; }
+</style>
+
+<h2>Wie sieht das Heft nachts aus?</h2>
+<p class="subtitle">Hell bleibt das Karoheft von vorhin. Hier sind drei Ideen für den Dunkelmodus, alle mit Reenie Beanie.</p>
+
+<div class="cards">
+  <div class="card" data-choice="tafel" onclick="toggleSelect(this)">
+    <div class="card-image"><div class="dk ta">
+      <div class="top"><span>silentnille</span><span>☾</span></div>
+      <h1>Mein <u>erstes Semester</u> Master</h1>
+      <div class="weeks"><span class="x"></span><span class="x"></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div>
+      <small>2 von 26 Wochen abgehakt</small><br>
+      <div class="n"><b>Generative Gestaltung</b>HA 1: drei Ebenen Perlin Noise, übereinander geblendet.<div class="stamp">LÄUFT</div></div>
+    </div></div>
+    <div class="card-body"><h3>A · Schultafel</h3><p>Grüne Tafel, Kreide, Wischspuren. Post-its werden zu Kreide-Kästen. Das Raster fehlt, dafür passt es inhaltlich am besten zur Uni.</p></div>
+  </div>
+
+  <div class="card" data-choice="blaupause" onclick="toggleSelect(this)">
+    <div class="card-image"><div class="dk bp">
+      <div class="top"><span>silentnille</span><span>☾</span></div>
+      <h1>Mein <u>erstes Semester</u> Master</h1>
+      <div class="weeks"><span class="x"></span><span class="x"></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div>
+      <small>2 von 26 Wochen abgehakt</small><br>
+      <div class="n"><b>Generative Gestaltung</b>HA 1: drei Ebenen Perlin Noise, übereinander geblendet.<div class="stamp">LÄUFT</div></div>
+    </div></div>
+    <div class="card-body"><h3>B · Blaupause</h3><p>Dunkelblaues Karopapier, weiße Schrift, gelbe Post-its bleiben. Das Heft bleibt erkennbar, nur das Licht ist aus.</p></div>
+  </div>
+
+  <div class="card" data-choice="schwarz" onclick="toggleSelect(this)">
+    <div class="card-image"><div class="dk sh">
+      <div class="top"><span>silentnille</span><span>☾</span></div>
+      <h1>Mein <u>erstes Semester</u> Master</h1>
+      <div class="weeks"><span class="x"></span><span class="x"></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div>
+      <small>2 von 26 Wochen abgehakt</small><br>
+      <div class="n"><b>Generative Gestaltung</b>HA 1: drei Ebenen Perlin Noise, übereinander geblendet.<div class="stamp">LÄUFT</div></div>
+    </div></div>
+    <div class="card-body"><h3>C · Schwarzes Heft</h3><p>Schwarzes Notizbuch mit hellem Gelstift, Mint als Akzent. Am ruhigsten für die Augen, am wenigsten verspielt.</p></div>
+  </div>
+</div>

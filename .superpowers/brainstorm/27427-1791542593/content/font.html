@@ -1,0 +1,56 @@
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;700&family=Patrick+Hand&family=Kalam:wght@400;700&family=Reenie+Beanie&display=swap">
+<style>
+  .fk { background-color: #fdfdfb; background-image: linear-gradient(#bcd3ea 1px, transparent 1px), linear-gradient(90deg, #bcd3ea 1px, transparent 1px); background-size: 18px 18px;
+        color: #1f3a93; padding: 18px 20px 20px 56px; position: relative; border-radius: 4px; min-height: 230px; }
+  .fk::before { content: ""; position: absolute; top: 0; bottom: 0; left: 38px; width: 2px; background: #e8474c; opacity: .7; }
+  .fk h1 { margin: 0 0 6px; font-weight: 700; line-height: 1.05; }
+  .fk h1 u { text-decoration: none; background: linear-gradient(transparent 62%, #fff27a 62%, #fff27a 90%, transparent 90%); }
+  .fk p { margin: 0 0 10px; }
+  .fk .n { display: inline-block; width: 200px; padding: 12px 14px; background: #fff7a8; transform: rotate(-2deg); box-shadow: 2px 3px 0 #0000001a; }
+  .fk .n b { display: block; margin-bottom: 4px; }
+  .caveat { font-family: Caveat, cursive; } .caveat h1 { font-size: 38px; } .caveat p, .caveat .n { font-size: 20px; }
+  .patrick { font-family: "Patrick Hand", cursive; } .patrick h1 { font-size: 32px; } .patrick p, .patrick .n { font-size: 17px; }
+  .kalam { font-family: Kalam, cursive; } .kalam h1 { font-size: 30px; } .kalam p, .kalam .n { font-size: 15px; }
+  .reenie { font-family: "Reenie Beanie", cursive; } .reenie h1 { font-size: 40px; font-weight: 400; } .reenie p, .reenie .n { font-size: 21px; }
+</style>
+
+<h2>Welche Handschrift?</h2>
+<p class="subtitle">Gleicher Text in vier Schriften. Achte auf Lesbarkeit bei kleinem Text, nicht nur auf die Überschrift.</p>
+
+<div class="cards">
+  <div class="card" data-choice="caveat" onclick="toggleSelect(this)">
+    <div class="card-image"><div class="fk caveat">
+      <h1>Mein <u>erstes Semester</u> Master</h1>
+      <p>2 von 26 Wochen abgehakt · Medieninformatik</p>
+      <div class="n"><b>Generative Gestaltung</b>HA 1: drei Ebenen Perlin Noise, übereinander geblendet.</div>
+    </div></div>
+    <div class="card-body"><h3>A · Caveat</h3><p>Lockere Filzstift-Schrift, schmal, wirkt schnell hingeschrieben. Gut lesbar.</p></div>
+  </div>
+
+  <div class="card" data-choice="patrick" onclick="toggleSelect(this)">
+    <div class="card-image"><div class="fk patrick">
+      <h1>Mein <u>erstes Semester</u> Master</h1>
+      <p>2 von 26 Wochen abgehakt · Medieninformatik</p>
+      <div class="n"><b>Generative Gestaltung</b>HA 1: drei Ebenen Perlin Noise, übereinander geblendet.</div>
+    </div></div>
+    <div class="card-body"><h3>B · Patrick Hand</h3><p>Ordentliche Druckschrift, wie sauber mitgeschrieben. Am besten lesbar, am wenigsten wild.</p></div>
+  </div>
+
+  <div class="card" data-choice="kalam" onclick="toggleSelect(this)">
+    <div class="card-image"><div class="fk kalam">
+      <h1>Mein <u>erstes Semester</u> Master</h1>
+      <p>2 von 26 Wochen abgehakt · Medieninformatik</p>
+      <div class="n"><b>Generative Gestaltung</b>HA 1: drei Ebenen Perlin Noise, übereinander geblendet.</div>
+    </div></div>
+    <div class="card-body"><h3>C · Kalam</h3><p>Kuli-Schreibschrift, leicht schräg. Am nächsten am Mockup von vorhin.</p></div>
+  </div>
+
+  <div class="card" data-choice="reenie" onclick="toggleSelect(this)">
+    <div class="card-image"><div class="fk reenie">
+      <h1>Mein <u>erstes Semester</u> Master</h1>
+      <p>2 von 26 Wochen abgehakt · Medieninformatik</p>
+      <div class="n"><b>Generative Gestaltung</b>HA 1: drei Ebenen Perlin Noise, übereinander geblendet.</div>
+    </div></div>
+    <div class="card-body"><h3>D · Reenie Beanie</h3><p>Krakelig mit Bleistift, sehr persönlich. Bei längeren Texten anstrengend.</p></div>
+  </div>
+</div>

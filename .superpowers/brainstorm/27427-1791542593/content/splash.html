@@ -1,0 +1,56 @@
+<style>
+  .sp { background: #0d1117; color: #7ee787; font-family: ui-monospace, Menlo, monospace; height: 220px; border-radius: 10px;
+        display: flex; align-items: center; justify-content: center; overflow: hidden; position: relative; }
+
+  /* 1: Noise-Linien zeichnen sich */
+  .s1 path { fill: none; stroke: currentColor; stroke-width: 1.5; stroke-dasharray: 600; stroke-dashoffset: 600; animation: draw 3s ease-out infinite; }
+  .s1 path:nth-child(2) { animation-delay: .2s; opacity: .7; }
+  .s1 path:nth-child(3) { animation-delay: .4s; opacity: .45; }
+  .s1 path:nth-child(4) { animation-delay: .6s; opacity: .25; }
+  @keyframes draw { 0% { stroke-dashoffset: 600; opacity: 1; } 70% { stroke-dashoffset: 0; } 90%,100% { stroke-dashoffset: 0; opacity: 0; } }
+
+  /* 2: Terminal tippt */
+  .s2 .t { width: 0; overflow: hidden; white-space: nowrap; border-right: 2px solid; font-size: 18px; animation: type 3.5s steps(22) infinite, blink .5s step-end infinite; }
+  @keyframes type { 0% { width: 0; } 60%,85% { width: 22ch; } 100% { width: 22ch; opacity: 0; } }
+  @keyframes blink { 50% { border-color: transparent; } }
+
+  /* 3: Logo wird nachgezeichnet */
+  .s3 text { font: 700 44px ui-monospace, Menlo, monospace; fill: transparent; stroke: currentColor; stroke-width: 1;
+             stroke-dasharray: 300; stroke-dashoffset: 300; animation: logo 3.5s ease-in-out infinite; }
+  @keyframes logo { 0% { stroke-dashoffset: 300; fill: transparent; } 55% { stroke-dashoffset: 0; fill: transparent; } 75%,90% { fill: currentColor; } 100% { fill: currentColor; opacity: 0; } }
+</style>
+
+<h2>Welcher Splash beim ersten Besuch?</h2>
+<p class="subtitle">Läuft einmal 2 bis 3 Sekunden und blendet dann aus. Ohne Klick. Hier wiederholen sich alle drei in Schleife, damit du sie vergleichen kannst.</p>
+
+<div class="cards">
+  <div class="card" data-choice="noise" onclick="toggleSelect(this)">
+    <div class="card-image">
+      <div class="sp s1">
+        <svg width="100%" height="160" viewBox="0 0 300 160" preserveAspectRatio="none">
+          <path d="M0 80 C 40 40, 70 120, 110 75 S 180 30, 220 85 S 270 110, 300 70"/>
+          <path d="M0 95 C 50 60, 80 130, 120 90 S 190 50, 230 100 S 275 120, 300 88"/>
+          <path d="M0 65 C 35 30, 60 100, 100 60 S 170 20, 210 70 S 265 95, 300 55"/>
+          <path d="M0 110 C 45 80, 90 140, 130 105 S 200 70, 240 115 S 280 130, 300 105"/>
+        </svg>
+      </div>
+    </div>
+    <div class="card-body"><h3>1 · Noise-Wellen</h3><p>Vier Linien zeichnen sich wie Perlin-Noise über den Screen. Passt zur ersten Hausaufgabe. Im echten Splash rechne ich die Kurven mit p5-Noise, dann sehen sie jedes Mal anders aus.</p></div>
+  </div>
+
+  <div class="card" data-choice="terminal" onclick="toggleSelect(this)">
+    <div class="card-image">
+      <div class="sp s2"><div class="t">&gt; hallo, semester 1_</div></div>
+    </div>
+    <div class="card-body"><h3>2 · Terminal tippt</h3><p>Eine Zeile tippt sich selbst, der Cursor blinkt, dann geht's los. Schlicht und schnell.</p></div>
+  </div>
+
+  <div class="card" data-choice="logo" onclick="toggleSelect(this)">
+    <div class="card-image">
+      <div class="sp s3">
+        <svg width="100%" height="120" viewBox="0 0 320 80"><text x="50%" y="58" text-anchor="middle">silentnille</text></svg>
+      </div>
+    </div>
+    <div class="card-body"><h3>3 · Logo zeichnet sich</h3><p>Dein Name wird als Umriss nachgezogen und füllt sich dann. Klassisch, wirkt wie eine Signatur.</p></div>
+  </div>
+</div>

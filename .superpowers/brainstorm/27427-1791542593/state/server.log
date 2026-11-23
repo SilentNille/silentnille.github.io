@@ -1,0 +1,11 @@
+{"type":"server-started","port":60006,"host":"127.0.0.1","url_host":"localhost","url":"http://localhost:60006","screen_dir":"/Users/pni/private/silentnille.github.io/.superpowers/brainstorm/27427-1791542593/content","state_dir":"/Users/pni/private/silentnille.github.io/.superpowers/brainstorm/27427-1791542593/state"}
+{"type":"screen-added","file":"/Users/pni/private/silentnille.github.io/.superpowers/brainstorm/27427-1791542593/content/visual-style.html"}
+{"type":"screen-added","file":"/Users/pni/private/silentnille.github.io/.superpowers/brainstorm/27427-1791542593/content/splash.html"}
+{"type":"screen-added","file":"/Users/pni/private/silentnille.github.io/.superpowers/brainstorm/27427-1791542593/content/task-layout.html"}
+{"type":"screen-added","file":"/Users/pni/private/silentnille.github.io/.superpowers/brainstorm/27427-1791542593/content/waiting.html"}
+{"type":"screen-added","file":"/Users/pni/private/silentnille.github.io/.superpowers/brainstorm/27427-1791542593/content/styles-v2.html"}
+{"type":"screen-added","file":"/Users/pni/private/silentnille.github.io/.superpowers/brainstorm/27427-1791542593/content/font.html"}
+{"type":"screen-added","file":"/Users/pni/private/silentnille.github.io/.superpowers/brainstorm/27427-1791542593/content/dark.html"}
+{"type":"screen-added","file":"/Users/pni/private/silentnille.github.io/.superpowers/brainstorm/27427-1791542593/content/final.html"}
+{"type":"screen-added","file":"/Users/pni/private/silentnille.github.io/.superpowers/brainstorm/27427-1791542593/content/waiting-2.html"}
+{"type":"server-stopped","reason":"idle timeout"}
